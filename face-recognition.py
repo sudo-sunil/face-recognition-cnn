@@ -64,7 +64,7 @@ def recognize_face(face_image, embeddings, model):
 def recognize_faces(embeddings) :
       font = cv2.FONT_HERSHEY_SIMPLEX
       
-      cap = cv2.VideoCapture(-1)
+      cap = cv2.VideoCapture(0)
       
       fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
       out = cv2.VideoWriter('face-recognition-cnn.avi',fourcc,10,(int(cap.get(3)),int(cap.get(4))),True)
@@ -104,7 +104,7 @@ def recognize_faces(embeddings) :
 
 def load_embeddings() :
       input_embeddings = {}
-      embedding_file = np.load('embeddings.npy')
+      embedding_file = np.load('embeddings.npy',allow_pickle=True)
       for k,v in embedding_file[()].items() :
             print(type(v))
             input_embeddings[k] = v
